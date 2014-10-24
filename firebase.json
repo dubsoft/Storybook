@@ -1,9 +1,9 @@
 {
-  "firebase":"quill-writer",
+  "firebase": "storybook",
   "public": "dist",
   "ignore": [
     "firebase.json",
-    ".*",
+    "**/.*",
     "**/node_modules/**"
   ]
 }
