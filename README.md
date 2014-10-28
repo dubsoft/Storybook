@@ -1,6 +1,6 @@
 # Quill Writer
 
-# Please see our [readme.io page](http://empirical-core.readme.io/v1.0/docs/quill-writer) for updated docs
+# Please see our [readme.io page](http://empirical-core.readme.io/v1.0/docs/storybook) for updated docs
 
 Quill Writer - Learn by Writing Together
 =======
@@ -11,7 +11,7 @@ Quill Writer - Learn by Writing Together
 
 
 View the [work in progress site
-here](https://quill-writer.firebaseapp.com/#/)
+here](https://storybook.firebaseapp.com/#/)
 
 Check out the [wiki](https://github.com/empirical-org/Quill-Writer/wiki) for more information about the project and how to contribute.
 
@@ -24,7 +24,7 @@ The `module_url` for this application is `/#/`.
 For example,
 
 ```
-https://quill-writer.firebaseapp.com/#/?uid=asdf1234&sid=5678aoeu
+https://storybook.firebaseapp.com/#/?uid=asdf1234&sid=5678aoeu
 ```
 
 will be the complete url Compass loads for Stories with Friends.
@@ -36,7 +36,7 @@ The `form_url` for this application is `/#/form`
 For example,
 
 ```
-https://quill-writer.firebaseapp.com/#/form?uid=1234klasdf
+https://storybook.firebaseapp.com/#/form?uid=1234klasdf
 ```
 
 The form url is served up when an administrator wants to add another

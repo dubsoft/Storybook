@@ -1,6 +1,6 @@
 #!/bin/bash
 
-URL="https://quill-writer.firebaseapp.com/#/"
+URL="https://storybook.firebaseapp.com/#/"
 
 PROMPTS="1 2 3 4 5 6"
 
