@@ -29,6 +29,7 @@ p.striked {
 .navbar .navbar-brand.title {
   color: #FFF;
   font-size: 30px;
+  font-family: 'Lobster', cursive;
 }
 
 .navbar .navbar-brand.tagline {
