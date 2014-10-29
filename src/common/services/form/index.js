@@ -23,7 +23,7 @@ angular.module('sf.services.form', [
 
   form.getStory = function(activityId, cb) {
     var stories = $firebase(storiesRef).$asArray();
-    stories.$loaded(function(stories) {
+    stories.$loaded().then(function(stories) {
       _.each(stories, function(story) {
         if (story.id === activityId) {
           cb(null, story);
