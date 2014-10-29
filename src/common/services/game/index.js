@@ -180,6 +180,23 @@ angular.module("sf.services.game", [
       });
     }
 
+    gameModel.getImageSet = function(activityPrompt) {
+      var sets = {
+        1: {
+          name: "Day At School",
+          images: [
+            "https://s3.amazonaws.com/story-book/Day+at+School/School1.png",
+            "https://s3.amazonaws.com/story-book/Day+at+School/School2.png",
+            "https://s3.amazonaws.com/story-book/Day+at+School/School3.png",
+            "https://s3.amazonaws.com/story-book/Day+at+School/School4.png",
+            "https://s3.amazonaws.com/story-book/Day+at+School/School5.png",
+            "https://s3.amazonaws.com/story-book/Day+at+School/School6.png"
+          ]
+        },
+      };
+      return sets[activityPrompt];
+    };
+
     gameModel.logWords = function(gameId, currentGame, sentence) {
       var gameRef = gameModel.getRef(gameId);
       var wordsUsed = $firebase(gameRef.child("wordsUsed")).$asArray();

@@ -25,6 +25,7 @@
     "underscore": "~1.7.0",
     "angular-local-storage": "~0.1.1",
     "angulartics": "~0.17.0",
-    "angular-uuid4": "~0.2.0"
+    "angular-uuid4": "~0.2.0",
+    "angular-utils-pagination": "~0.3.1"
   }
 }

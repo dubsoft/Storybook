@@ -1,11 +1,10 @@
 <div class="row">
   <div class="col-md-6">
-    <img goes here>
+    <img src="{{game.currentGame.image}}" alt="Image for story"/>
   </div>
   <div class="col-md-6">
     <p class="italic">Write a story by writing a sentence for each picture.</p>
-    <textarea type="text" class="form-control" ng-model="game.currentGame.newSentence"
-      placeholder="Type your sentence here. Move your mouse pointer over the story word to see the definition." >
-    </textarea>
+    <textarea class="form-control" ng-model="game.currentGame.newSentence"></textarea>
+    <button type="button" class="btn btn-primary send" ng-click="game.submitEntry()">Next Picture</button>
   </div>
 </div>

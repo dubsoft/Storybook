@@ -41,6 +41,7 @@ angular.module('sf.game', [
 
     game.currentGame = Game.getGameByUser(User, $scope);
     game.currentGame.images = [];
+    game.currentGame.imageCounter = 0;
     game.currentGame.newSentence = "";
 
     var gameId = User.currentUser.sid;
@@ -57,6 +58,13 @@ angular.module('sf.game', [
       return game.currentGame.newSentence;
     }
 
+    game.loadImages = function() {
+      var imageSet = Game.getImageSet($state.params.activityPrompt);
+      game.currentGame.setName = imageSet.name;
+      game.currentGame.images = imageSet.images;
+      game.currentGame.image = imageSet.images[0];
+    }
+
     game.submitEntry = function() {
       //do some validation here
       var sentence = game.getCurrentSentence();
@@ -66,14 +74,26 @@ angular.module('sf.game', [
       var errors = game.validateSentence(sentence);
       if (errors.length === 0) {
         Game.sendSentence(gameId, game.currentGame, sentence, User.currentUser);
-        Game.logWords(gameId, game.currentGame, sentence);
-        Game.takeTurns(gameId);
-        game.currentGame.newSentence = "";
+        game.advanceImage();
       } else {
         game.showErrors(errors);
       }
 
     }
+
+    game.advanceImage = function() {
+      var i = game.currentGame.images;
+      game.currentGame.imageCounter++;
+      if (i[game.currentGame.imageCounter]) {
+        game.currentGame.image = i[game.currentGame.imageCounter];
+      } else {
+        game.endOfStory();
+      }
+    };
+
+    game.endOfStory = function() {
+      alert("Thanks for playing!");
+    };
 
     game.validateSentence = function(sentence) {
       var errors = [];
@@ -114,6 +134,9 @@ angular.module('sf.game', [
     game.hasFinishMessageToShow = function() {
       return game.currentGame.finishMessageToShow !== "";
     }
+
+    //Setup Game
+    game.loadImages();
 
   })
 
