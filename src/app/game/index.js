@@ -35,6 +35,7 @@ angular.module('sf.game', [
     game.currentGame = Game.getGameByUser(User, $scope);
     game.currentGame.images = [];
     game.currentGame.imageCounter = 0;
+    game.currentGame.imageBookmark = 1;
     game.currentGame.newSentence = "";
 
     var gameId = User.currentUser.sid;
@@ -56,6 +57,7 @@ angular.module('sf.game', [
       game.currentGame.setName = imageSet.name;
       game.currentGame.images = imageSet.images;
       game.currentGame.image = imageSet.images[0];
+      game.currentGame.imageTotal = imageSet.images.length;
     }
 
     game.submitEntry = function() {
@@ -79,6 +81,7 @@ angular.module('sf.game', [
       game.currentGame.imageCounter++;
       if (i[game.currentGame.imageCounter]) {
         game.currentGame.image = i[game.currentGame.imageCounter];
+        game.currentGame.imageBookmark++;
       } else {
         game.endOfStory();
       }
