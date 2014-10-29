@@ -29,6 +29,14 @@ angular.module('sf.form', [
       _.each(images, function(image) {
         image.md5sum = md5.createHash(image.base64model.base64);
       });
+      Form.createNewStory({
+        name: f.name,
+        images: images
+      }, function(err){
+        if (err) {
+          alert(err);
+        }
+      });
     }
 
     form.addNewImage = function() {

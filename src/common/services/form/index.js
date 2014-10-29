@@ -5,15 +5,14 @@ angular.module('sf.services.form', [
   empirical
 ])
 
-.service("Form", function(Empirical) {
+.service("Form", function($firebase, baseFbUrl) {
   var form = this;
 
-  form.submit = function(f, cb) {
-    Empirical.createActivity(f, function(err) {
-      if (typeof cb === 'function') {
-        cb(err);
-      }
-    })
+  var storiesRef = new Firebase(baseFbUrl + "/stories");
+
+  form.createNewStory = function(story, cb) {
+    var stories = $firebase(storiesRef).$asArray();
+    stories.$add(story).then(cb);
   }
 })
 
