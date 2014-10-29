@@ -38,6 +38,7 @@ angular.module('sf.game', [
     game.currentGame.imageBookmark = 1;
     game.currentGame.newSentence = "";
 
+    var previousSentence = "";
     var gameId = User.currentUser.sid;
 
     game.currentGame.newSentence = "";
@@ -50,6 +51,10 @@ angular.module('sf.game', [
 
     game.getCurrentSentence = function() {
       return game.currentGame.newSentence;
+    }
+
+    game.getPreviousSentence = function() {
+      return previousSentence;
     }
 
     game.loadImages = function() {
@@ -70,6 +75,7 @@ angular.module('sf.game', [
       if (errors.length === 0) {
         Game.sendSentence(gameId, game.currentGame, sentence, User.currentUser);
         game.advanceImage();
+        previousSentence = sentence;
       } else {
         game.showErrors(errors);
       }
@@ -99,8 +105,21 @@ angular.module('sf.game', [
       game.currentGame.finishMessageToShow = "Thanks for writing your awesome story!";
     };
 
+    game.isSomethingAdded = function(sentence) {
+      var p = game.getPreviousSentence();
+      if (sentence && sentence.length > p.length) {
+        return null;
+      } else {
+        return ["Write a sentence to advance to the next image."];
+      }
+    };
+
     game.validateSentence = function(sentence) {
       var errors = [];
+      var nothingAdded = game.isSomethingAdded(sentence);
+      if (nothingAdded) {
+        errors.push(nothingAdded);
+      }
       var profane = ProfanityFilter.checkSentence(sentence);
       if (profane) {
         errors.push(profane);
