@@ -23,7 +23,7 @@ angular.module('sf.game', [
         }
       });
   })
-  .controller('GameCtrl', function($scope, $state, Game, User, ProfanityFilter, Punctuation) {
+  .controller('GameCtrl', function($scope, $state, ngDialog, Game, User, ProfanityFilter, Punctuation) {
     var game = this;
 
     var currentUser = User.currentUser;
@@ -86,6 +86,14 @@ angular.module('sf.game', [
         game.endOfStory();
       }
     };
+
+    game.showImageHiRes = function() {
+      var imageURL = game.currentGame.image;
+      ngDialog.open({
+        template: '<img src="' + imageURL + '"/>',
+        plain:true
+      });
+    }
 
     game.endOfStory = function() {
       game.currentGame.finishMessageToShow = "Thanks for writing your awesome story!";

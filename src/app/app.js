@@ -36,7 +36,8 @@ angular.module('stories-with-friends', [
     'LocalStorageModule',
     'angulartics',
     'angulartics.mixpanel',
-    'uuid4'
+    'uuid4',
+    'ngDialog',
   ])
 
   .config(function($stateProvider, $urlRouterProvider) {
