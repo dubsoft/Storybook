@@ -38,7 +38,10 @@ angular.module('sf.game', [
       }
     }
 
+
     game.currentGame = Game.getGameByUser(User, $scope);
+    game.currentGame.images = [];
+    game.currentGame.newSentence = "";
 
     var gameId = User.currentUser.sid;
 
@@ -96,35 +99,6 @@ angular.module('sf.game', [
       alert(eString.join("\n"))
     };
 
-    game.isLocalPlayersTurn = function() {
-      var users = game.currentGame.users;
-      if (users) {
-        var userInControl;
-        angular.forEach(users, function(user) {
-          if (user.isTheirTurn) {
-            userInControl = user;
-          }
-        });
-        if (userInControl) {
-          return userInControl.name === User.localUser;
-        } else {
-          return false;
-        }
-      } else {
-        return false;
-      }
-    }
-
-    game.isWordUsed = function(word) {
-      var wordUsed = false;
-      angular.forEach(game.currentGame.wordsUsed, function(usedWord) {
-        if (word === usedWord.$value) {
-          wordUsed = true;
-        }
-      });
-      return wordUsed;
-    }
-
     game.finish = function() {
       Game.imDone(gameId, game.currentGame, User.currentUser);
     }
@@ -141,9 +115,6 @@ angular.module('sf.game', [
       return game.currentGame.finishMessageToShow !== "";
     }
 
-    game.isYou = function(user) {
-      return user.name === User.localUser;
-    }
   })
 
 ;
