@@ -22,11 +22,17 @@ angular.module('sf.form', [
 
     form.currentForm = {};
 
+    form.currentForm.images = [{}];
+
     form.submitForm = function(f) {
       Form.submit(f, function(err) {
         //do something sending the quill.js close form event thing
       });
     }
+
+    form.addNewImage = function() {
+      form.currentForm.images.push({});
+    };
   })
 
 ;
