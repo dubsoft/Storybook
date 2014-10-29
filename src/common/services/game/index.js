@@ -65,7 +65,7 @@ angular.module("sf.services.game", [
         } else if (length < 2) {
           makeNewUser(length)
         }
-        Empirical.initializeGame($scope, gameUsers, currentUser);
+        //Empirical.initializeGame($scope, gameUsers, currentUser);
       }).then(function() {
         $scope.users = gameUsers;
       });
@@ -180,21 +180,22 @@ angular.module("sf.services.game", [
       });
     }
 
+    gameModel.sets = {
+      1: {
+        name: "Day At School",
+        images: [
+          "https://s3.amazonaws.com/story-book/Day+at+School/School1.png",
+          "https://s3.amazonaws.com/story-book/Day+at+School/School2.png",
+          "https://s3.amazonaws.com/story-book/Day+at+School/School3.png",
+          "https://s3.amazonaws.com/story-book/Day+at+School/School4.png",
+          "https://s3.amazonaws.com/story-book/Day+at+School/School5.png",
+          "https://s3.amazonaws.com/story-book/Day+at+School/School6.png"
+        ]
+      },
+    };
+
     gameModel.getImageSet = function(activityPrompt) {
-      var sets = {
-        1: {
-          name: "Day At School",
-          images: [
-            "https://s3.amazonaws.com/story-book/Day+at+School/School1.png",
-            "https://s3.amazonaws.com/story-book/Day+at+School/School2.png",
-            "https://s3.amazonaws.com/story-book/Day+at+School/School3.png",
-            "https://s3.amazonaws.com/story-book/Day+at+School/School4.png",
-            "https://s3.amazonaws.com/story-book/Day+at+School/School5.png",
-            "https://s3.amazonaws.com/story-book/Day+at+School/School6.png"
-          ]
-        },
-      };
-      return sets[activityPrompt];
+      return gameModel.sets[activityPrompt];
     };
 
     gameModel.logWords = function(gameId, currentGame, sentence) {

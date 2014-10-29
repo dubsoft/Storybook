@@ -29,15 +29,8 @@ angular.module('sf.game', [
     var currentUser = User.currentUser;
     if (!currentUser) {
       currentUser = User.getUserFromLocalStorage();
-      if (currentUser) {
-        User.setCurrentUser(currentUser);
-      } else {
-        console.log("There is no current user. Redirecting to sf.home");
-        $state.go('sf.home');
-        return;
-      }
+      User.currentUser = currentUser;
     }
-
 
     game.currentGame = Game.getGameByUser(User, $scope);
     game.currentGame.images = [];
@@ -59,7 +52,7 @@ angular.module('sf.game', [
     }
 
     game.loadImages = function() {
-      var imageSet = Game.getImageSet($state.params.activityPrompt);
+      var imageSet = Game.getImageSet(currentUser.activityPrompt);
       game.currentGame.setName = imageSet.name;
       game.currentGame.images = imageSet.images;
       game.currentGame.image = imageSet.images[0];
