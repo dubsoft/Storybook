@@ -27,6 +27,7 @@
     "angulartics": "~0.17.0",
     "angular-uuid4": "~0.2.0",
     "angular-utils-pagination": "~0.3.1",
-    "ngDialog": "~0.3.2"
+    "ngDialog": "~0.3.2",
+    "angular-base64-upload": "~0.0.2"
   }
 }

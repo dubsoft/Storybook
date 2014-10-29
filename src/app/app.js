@@ -38,6 +38,7 @@ angular.module('stories-with-friends', [
     'angulartics.mixpanel',
     'uuid4',
     'ngDialog',
+    'naif.base64',
   ])
 
   .config(function($stateProvider, $urlRouterProvider) {
