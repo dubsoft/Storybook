@@ -97,7 +97,7 @@ angular.module("sf.services.game", [
     gameModel.closeGame = function(gameId, currentUser) {
       console.log(currentUser);
       if (currentUser.leader) {
-        $analytics.eventTrack('Quill-Writer Submit Story to Teacher');
+        $analytics.eventTrack('Story Book Submit Story to Teacher');
       }
       console.log("Close game %s", gameId);
     };
@@ -198,7 +198,7 @@ angular.module("sf.services.game", [
       wordsUsed.$loaded(function() {
         var uniqueWordsToAdd = _.uniq(wordsToAdd);
         if (wordsUsed.length === 0 && uniqueWordsToAdd.length > 0) {
-          $analytics.eventTrack('Quill-Writer Story Word Used', { wordUsed : uniqueWordsToAdd[0] });
+          $analytics.eventTrack('Story Book Story Word Used', { wordUsed : uniqueWordsToAdd[0] });
         }
         _.each(uniqueWordsToAdd, function(word) {
           wordsUsed.$add(word);

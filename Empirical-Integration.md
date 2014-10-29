@@ -7,7 +7,7 @@ page](http://empirical-core.readme.io/v1.0/docs/quill-apps-empirical-core-integr
 These notes serve as a guide for interacting with the Empirical-Core API
 from a App perspective.
 
-These notes will use [Quill-Writer](https://github.com/empirical-org/Quill-Writer) as an example.
+These notes will use [Story Book](https://github.com/empirical-org/Story Book) as an example.
 
 An app must be registered with quill.org as an OAuth Application. There
 are two fields that contain URLs that point to different parts of your
@@ -22,7 +22,7 @@ information, an iframe with it's `src` filled in with the form url you
 provided when you created your application.
 
 The form url is for the vendor properties of your application. In the
-case of Quill-Writer, the properties we use are for building an
+case of Story Book, the properties we use are for building an
 individual story. The properties we use are the prompt for the story, a
 list of words/definitions/part of speech, and the number of words
 required. These properties may change in the future.
@@ -78,7 +78,7 @@ Empirical-Core.
 
 To get details about an activity make a `GET /activites/:uid` where uid
 is your activities unique identifier. The UID for now is know to the
-Quill-Writer developers. In the future we will be passed this
+Story Book developers. In the future we will be passed this
 information.
 
 In the future, we plan to provide a JavaScript Client Library, and an

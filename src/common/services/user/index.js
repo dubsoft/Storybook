@@ -9,7 +9,7 @@ angular.module('sf.services.user', [])
     user.setCurrentUser = function(newUser) {
       if (user.currentUser === null) {
         //Track new user if currentUser is null
-        $analytics.eventTrack('Quill-Writer New User Session');
+        $analytics.eventTrack('Story Book New User Session');
       }
       user.currentUser = newUser;
       localStorageService.set(user.currentUserKey, newUser);

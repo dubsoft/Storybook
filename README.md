@@ -13,7 +13,7 @@ Quill Writer - Learn by Writing Together
 View the [work in progress site
 here](https://storybook.firebaseapp.com/#/)
 
-Check out the [wiki](https://github.com/empirical-org/Quill-Writer/wiki) for more information about the project and how to contribute.
+Check out the [wiki](https://github.com/empirical-org/Story Book/wiki) for more information about the project and how to contribute.
 
 ##Compass Activity Specification
 
@@ -159,7 +159,7 @@ global name space.
 
 ## Contributing
 
-Additional information can be found in the [wiki](https://github.com/empirical-org/Quill-Writer/wiki/contributing).
+Additional information can be found in the [wiki](https://github.com/empirical-org/Story Book/wiki/contributing).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
