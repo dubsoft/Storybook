@@ -8,5 +8,6 @@
     <p class="italic">Write a story by writing a sentence for each picture.</p>
     <textarea class="form-control" ng-model="game.currentGame.newSentence"></textarea>
     <button type="button" class="btn btn-primary send" ng-click="game.submitEntry()">Next Picture</button>
+    <p>{{game.currentGame.finishMessageToShow}}</p>
   </div>
 </div>

@@ -88,7 +88,7 @@ angular.module('sf.game', [
     };
 
     game.endOfStory = function() {
-      alert("Thanks for playing!");
+      game.currentGame.finishMessageToShow = "Thanks for writing your awesome story!";
     };
 
     game.validateSentence = function(sentence) {
