@@ -18,10 +18,13 @@ angular.module('sf.home', [
       });
   })
 
-  .controller('HomeCtrl', function($state, User, Game, uuid4){
+  .controller('HomeCtrl', function($state, User, Game, Form, uuid4){
     var home = this;
 
     home.prompts = Game.getPrompts();
+    home.fbPrompts = Form.getPrompts();
+    console.log(home.fbPrompts);
+
 
     home.setUser = function(user) {
       User.setCurrentUser(user);

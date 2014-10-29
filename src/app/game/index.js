@@ -58,11 +58,14 @@ angular.module('sf.game', [
     }
 
     game.loadImages = function() {
-      var imageSet = Game.getImageSet(currentUser.activityPrompt);
-      game.currentGame.setName = imageSet.name;
-      game.currentGame.images = imageSet.images;
-      game.currentGame.image = imageSet.images[0];
-      game.currentGame.imageTotal = imageSet.images.length;
+      Game.getImageSet(currentUser.activityPrompt, function(err, imageSet){
+        console.log(imageSet);
+        console.log(err);
+        game.currentGame.setName = imageSet.name;
+        game.currentGame.images = imageSet.images;
+        game.currentGame.image = imageSet.images[0];
+        game.currentGame.imageTotal = imageSet.images.length;
+      });
     }
 
     game.submitEntry = function() {

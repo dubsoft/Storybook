@@ -17,7 +17,7 @@ angular.module('sf.form', [
       });
   })
 
-  .controller('FormCtrl', function(Form, md5, _) {
+  .controller('FormCtrl', function(Form, md5, _, uuid4) {
     var form = this;
 
     form.currentForm = {};
@@ -31,6 +31,7 @@ angular.module('sf.form', [
       });
       Form.createNewStory({
         name: f.name,
+        id: uuid4.generate(),
         images: images
       }, function(err){
         if (err) {
