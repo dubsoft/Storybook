@@ -36,6 +36,10 @@ p.striked {
   color: #000;
 }
 
+li.spacing {
+  margin: 20px;
+}
+
 .well {
   border: none;
 }
