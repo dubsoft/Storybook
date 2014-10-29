@@ -103,8 +103,6 @@ angular.module("sf.services.game", [
     };
 
     gameModel.sendSentence = function(gameId, currentGame, sentence, currentUser) {
-      sentence = gameModel.highlightWords(gameId, currentGame, sentence);
-      sentence = gameModel.appendExtraSpaceIfNeccessary(sentence);
       gameModel.getSentences(gameId).$add({entry: sentence, user: currentUser});
     };
 
@@ -192,6 +190,40 @@ angular.module("sf.services.game", [
           "https://s3.amazonaws.com/story-book/Day+at+School/School6.png"
         ]
       },
+      2: {
+        name: 'Trip to Gym',
+        images: [
+          "https://s3.amazonaws.com/story-book/Trip+to+Gym/Gym1.png",
+          "https://s3.amazonaws.com/story-book/Trip+to+Gym/Gym2.png",
+          "https://s3.amazonaws.com/story-book/Trip+to+Gym/Gym3.png",
+          "https://s3.amazonaws.com/story-book/Trip+to+Gym/Gym4.png",
+          "https://s3.amazonaws.com/story-book/Trip+to+Gym/Gym5.png",
+          "https://s3.amazonaws.com/story-book/Trip+to+Gym/Gym6.png"
+        ]
+      },
+      3: {
+        name: 'Birdhouse',
+        images: [
+          "https://s3.amazonaws.com/story-book/Building+a+Birdhouse/bird1.png",
+          "https://s3.amazonaws.com/story-book/Building+a+Birdhouse/bird2.png",
+          "https://s3.amazonaws.com/story-book/Building+a+Birdhouse/bird3.png",
+          "https://s3.amazonaws.com/story-book/Building+a+Birdhouse/bird4.png",
+          "https://s3.amazonaws.com/story-book/Building+a+Birdhouse/bird5.png",
+          "https://s3.amazonaws.com/story-book/Building+a+Birdhouse/bird6.png"
+        ]
+      },
+      4: {
+        name: 'Sandwich',
+        images: [
+          "https://s3.amazonaws.com/story-book/How+to+Make+a+Sandwich/sandwich1.png",
+          "https://s3.amazonaws.com/story-book/How+to+Make+a+Sandwich/sandwich2.png",
+          "https://s3.amazonaws.com/story-book/How+to+Make+a+Sandwich/sandwich3.png",
+          "https://s3.amazonaws.com/story-book/How+to+Make+a+Sandwich/sandwich4.png",
+          "https://s3.amazonaws.com/story-book/How+to+Make+a+Sandwich/sandwich5.png",
+          "https://s3.amazonaws.com/story-book/How+to+Make+a+Sandwich/sandwich6.png"
+        ]
+      },
+
     };
 
     gameModel.getImageSet = function(activityPrompt) {
