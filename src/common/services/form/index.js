@@ -12,7 +12,9 @@ angular.module('sf.services.form', [
 
   form.createNewStory = function(story, cb) {
     var stories = $firebase(storiesRef).$asArray();
-    stories.$add(story).then(cb);
+    stories.$add(story).then(function() {
+      cb();
+    });
   }
 })
 
