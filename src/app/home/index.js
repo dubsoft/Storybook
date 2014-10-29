@@ -33,16 +33,22 @@ angular.module('sf.home', [
           sid: $state.params.sid,
           activityPrompt: $state.params.activityPrompt
         });
+      } else if ($state.params.activityPrompt){
+        var p = $state.params.activityPrompt || 1;
+        home.setUser({
+          uid: uuid4.generate(),
+          sid: uuid4.generate(),
+          activityPrompt: p
+        });
       } else {
         var user = User.getUserFromLocalStorage();
         if (user) {
           home.setUser(user);
         } else {
-          var p = $state.params.activityPrompt || 1;
           home.setUser({
             uid: uuid4.generate(),
             sid: uuid4.generate(),
-            activityPrompt: p
+            activityPrompt: $state.params.activityPrompt || 1
           });
         }
       }
