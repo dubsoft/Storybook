@@ -18,7 +18,7 @@ angular.module('sf.home', [
       });
   })
 
-  .controller('HomeCtrl', function($state, User){
+  .controller('HomeCtrl', function($state, User, uuid4){
     var home = this;
 
     home.setUser = function(user) {
@@ -37,6 +37,13 @@ angular.module('sf.home', [
         var user = User.getUserFromLocalStorage();
         if (user) {
           home.setUser(user);
+        } else {
+          var p = $state.params.activityPrompt || 1;
+          home.setUser({
+            uid: uuid4.generate(),
+            sid: uuid4.generate(),
+            activityPrompt: p
+          });
         }
       }
     }
