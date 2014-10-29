@@ -181,6 +181,7 @@ angular.module("sf.services.game", [
     gameModel.sets = {
       1: {
         name: "Day At School",
+        id:1,
         images: [
           "https://s3.amazonaws.com/story-book/Day+at+School/School1.png",
           "https://s3.amazonaws.com/story-book/Day+at+School/School2.png",
@@ -192,6 +193,7 @@ angular.module("sf.services.game", [
       },
       2: {
         name: 'Trip to Gym',
+        id:2,
         images: [
           "https://s3.amazonaws.com/story-book/Trip+to+Gym/Gym1.png",
           "https://s3.amazonaws.com/story-book/Trip+to+Gym/Gym2.png",
@@ -203,6 +205,7 @@ angular.module("sf.services.game", [
       },
       3: {
         name: 'Birdhouse',
+        id:3,
         images: [
           "https://s3.amazonaws.com/story-book/Building+a+Birdhouse/bird1.png",
           "https://s3.amazonaws.com/story-book/Building+a+Birdhouse/bird2.png",
@@ -214,6 +217,7 @@ angular.module("sf.services.game", [
       },
       4: {
         name: 'Sandwich',
+        id:4,
         images: [
           "https://s3.amazonaws.com/story-book/How+to+Make+a+Sandwich/sandwich1.png",
           "https://s3.amazonaws.com/story-book/How+to+Make+a+Sandwich/sandwich2.png",
@@ -228,6 +232,10 @@ angular.module("sf.services.game", [
 
     gameModel.getImageSet = function(activityPrompt) {
       return gameModel.sets[activityPrompt];
+    };
+
+    gameModel.getPrompts = function() {
+      return gameModel.sets;
     };
 
     gameModel.logWords = function(gameId, currentGame, sentence) {

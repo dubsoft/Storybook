@@ -18,8 +18,10 @@ angular.module('sf.home', [
       });
   })
 
-  .controller('HomeCtrl', function($state, User, uuid4){
+  .controller('HomeCtrl', function($state, User, Game, uuid4){
     var home = this;
+
+    home.prompts = Game.getPrompts();
 
     home.setUser = function(user) {
       User.setCurrentUser(user);
@@ -43,18 +45,22 @@ angular.module('sf.home', [
       } else {
         var user = User.getUserFromLocalStorage();
         if (user) {
-          home.setUser(user);
+          //home.setUser(user);
         } else {
-          home.setUser({
-            uid: uuid4.generate(),
-            sid: uuid4.generate(),
-            activityPrompt: $state.params.activityPrompt || 1
-          });
+          console.log("showing activity list instead");
         }
       }
     }
 
     continueWithValidSession();
+
+    home.usePrompt = function(prompt) {
+      home.setUser({
+        uid: uuid4.generate(),
+        sid: uuid4.generate(),
+        activityPrompt: prompt.id
+      });
+    }
   })
 
 ;

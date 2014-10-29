@@ -3,16 +3,13 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12 text-center">
-      <h4>Please type in your uid and sid, and then enter the game to wait for your partner.</h4><br>
-    <div class="col-xs-4 col-xs-offset-4">
-      <form name="form" class="css-form" novalidate>
-        <input type="text" class="form-control input-lg" ng-model='home.user.uid' placeholder='uid' required>
-        <input type="text" class="form-control input-lg" ng-model='home.user.sid' placeholder='sid' required>
-        <input type="text" class="form-control input-lg" ng-model='home.user.activityPrompt' placeholder='Activity Prompt' required>
-        <br>
-        <button class="btn btn-primary btn-lg" role="button" ng-click='home.setUser(home.user)' ng-disabled="form.$invalid">Enter Game</button>
-        </form>
-    </div>
+  <div class="col-md-12">
+    <h2>Available Stories</h2>
+    <ul>
+      <li ng-repeat="prompt in home.prompts">
+      {{prompt.name}}
+      <button type="button" class="btn btn-primary send" ng-click="home.usePrompt(prompt)">Next</button>
+      </li>
+    </ul>
   </div>
 </div>
