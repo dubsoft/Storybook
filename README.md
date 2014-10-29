@@ -1,8 +1,8 @@
-# Quill Writer
+# Story Book
 
 # Please see our [readme.io page](http://empirical-core.readme.io/v1.0/docs/storybook) for updated docs
 
-Quill Writer - Learn by Writing Together
+Story Book - Learn by Writing Together
 =======
 - **Getting Started:** [Start here with this doc.](https://github.com/empirical-org/Documentation/tree/master/Getting-Started) 
 - **CLA:** [Please sign our CLA before contributing.] (https://www.clahub.com/agreements/empirical-org/Documentation)
