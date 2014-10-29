@@ -17,7 +17,7 @@ angular.module('sf.form', [
       });
   })
 
-  .controller('FormCtrl', function(Form) {
+  .controller('FormCtrl', function(Form, md5, _) {
     var form = this;
 
     form.currentForm = {};
@@ -25,8 +25,9 @@ angular.module('sf.form', [
     form.currentForm.images = [{}];
 
     form.submitForm = function(f) {
-      Form.submit(f, function(err) {
-        //do something sending the quill.js close form event thing
+      var images = f.images;
+      _.each(images, function(image) {
+        image.md5sum = md5.createHash(image.base64model.base64);
       });
     }
 
