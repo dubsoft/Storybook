@@ -2,6 +2,7 @@
   <div class="col-md-6">
     <img data-ng-src="{{game.currentGame.image}}" alt="Image for story"
       ng-click="game.showImageHiRes()"
+      height="430" width="430"
     />
     <p>{{game.currentGame.imageBookmark}} / {{game.currentGame.imageTotal}}</p>
     <button type="button" class="btn btn-primary send" ng-click="game.submitEntry()">Next</button>
