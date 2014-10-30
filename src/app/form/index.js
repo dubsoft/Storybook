@@ -32,13 +32,16 @@ angular.module('sf.form', [
         imagebytes[image.md5sum] = image.base64model;
         delete image.base64model;
       });
+      var id = uuid4.generate();
       Form.createNewStory({
         name: f.name,
-        id: uuid4.generate(),
+        id: id,
         images: images
       }, imagebytes, function(err){
         if (err) {
           alert(err);
+        } else {
+          form.currentForm.link = "https://storybook.firebaseapp.com/#/?activityPrompt=" + id;
         }
       });
     }
