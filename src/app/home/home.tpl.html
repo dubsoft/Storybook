@@ -9,6 +9,9 @@
       <li class="spacing" ng-repeat="prompt in home.prompts">
         <button type="button" class="btn btn-primary send" ng-click="home.usePrompt(prompt)">{{prompt.name}}</button>
       </li>
+      <li class="spacing" ng-repeat="prompt in home.fbPrompts">
+        <button type="button" class="btn btn-primary send" ng-click="home.usePrompt(prompt)">{{prompt.name}}</button>
+      </li>
     </ul>
   </div>
 </div>

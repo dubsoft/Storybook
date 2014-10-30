@@ -1,11 +1,13 @@
 var sfConstants = require('../../constants');
 var sfEmpirical = require('../empirical');
+var Form = require('../form/');
 angular.module("sf.services.game", [
     sfConstants,
     sfEmpirical,
+    Form,
   ])
 
-  .service("Game", function($firebase, baseFbUrl, Empirical, _, $analytics) {
+  .service("Game", function($firebase, baseFbUrl, Empirical, _, $analytics, Form) {
     var gameModel = this;
 
     var gamesRef = new Firebase(baseFbUrl + "/games");
@@ -230,8 +232,12 @@ angular.module("sf.services.game", [
 
     };
 
-    gameModel.getImageSet = function(activityPrompt) {
-      return gameModel.sets[activityPrompt];
+    gameModel.getImageSet = function(activityPrompt, cb) {
+      if (gameModel.sets[activityPrompt]) {
+        cb(null, gameModel.sets[activityPrompt]);
+      } else {
+        Form.getStory(activityPrompt, cb);
+      }
     };
 
     gameModel.getPrompts = function() {

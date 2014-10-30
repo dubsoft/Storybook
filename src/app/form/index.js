@@ -17,28 +17,35 @@ angular.module('sf.form', [
       });
   })
 
-  .controller('FormCtrl', function(Form) {
+  .controller('FormCtrl', function(Form, md5, _, uuid4) {
     var form = this;
 
     form.currentForm = {};
 
-    //Initialize the empty word list
-    form.currentForm.wordList = [{}];
+    form.currentForm.images = [{}];
 
     form.submitForm = function(f) {
-      Form.submit(f, function(err) {
-        //do something sending the quill.js close form event thing
+      var images = f.images;
+      var imagebytes = {};
+      _.each(images, function(image) {
+        image.md5sum = md5.createHash(image.base64model.base64);
+        imagebytes[image.md5sum] = image.base64model;
+        delete image.base64model;
+      });
+      Form.createNewStory({
+        name: f.name,
+        id: uuid4.generate(),
+        images: images
+      }, imagebytes, function(err){
+        if (err) {
+          alert(err);
+        }
       });
     }
 
-    form.addNewWord = function() {
-      form.currentForm.wordList.push({})
-    }
-
-    form.removeWord = function(wordTup) {
-      var index = form.currentForm.wordList.indexOf(wordTup);
-      form.currentForm.wordList.splice(index, 1);
-    }
+    form.addNewImage = function() {
+      form.currentForm.images.push({});
+    };
   })
 
 ;

@@ -23,7 +23,7 @@ angular.module('sf.game', [
         }
       });
   })
-  .controller('GameCtrl', function($scope, $state, ngDialog, Game, User, ProfanityFilter, Punctuation) {
+  .controller('GameCtrl', function($scope, $state, ngDialog, Form, Game, User, ProfanityFilter, Punctuation) {
     var game = this;
 
     var currentUser = User.currentUser;
@@ -42,6 +42,7 @@ angular.module('sf.game', [
     var gameId = User.currentUser.sid;
 
     game.currentGame.newSentence = "";
+    game.currentGame.isFromFb = false;
     game.currentGame.finishMessageToShow = "";
 
     game.closeGame = function() {
@@ -58,11 +59,23 @@ angular.module('sf.game', [
     }
 
     game.loadImages = function() {
-      var imageSet = Game.getImageSet(currentUser.activityPrompt);
-      game.currentGame.setName = imageSet.name;
-      game.currentGame.images = imageSet.images;
-      game.currentGame.image = imageSet.images[0];
-      game.currentGame.imageTotal = imageSet.images.length;
+      Game.getImageSet(currentUser.activityPrompt, function(err, imageSet, fromFb){
+        if (!fromFb) {
+          game.currentGame.setName = imageSet.name;
+          game.currentGame.images = imageSet.images;
+          game.currentGame.image = imageSet.images[0];
+          game.currentGame.imageTotal = imageSet.images.length;
+        } else {
+          var imageSetP = imageSet;
+          game.currentGame.isFromFb = true;
+          game.currentGame.setName = imageSetP.name;
+          game.currentGame.images = imageSetP.images;
+          game.currentGame.imageTotal = imageSetP.images.length;
+          Form.loadImage(imageSetP.images[0], function(err, imageString) {
+            game.currentGame.image = imageString;
+          });
+        }
+      });
     }
 
     game.submitEntry = function() {
@@ -85,9 +98,14 @@ angular.module('sf.game', [
     game.advanceImage = function() {
       var i = game.currentGame.images;
       game.currentGame.imageCounter++;
-      if (i[game.currentGame.imageCounter]) {
+      if (i[game.currentGame.imageCounter] && !game.currentGame.isFromFb) {
         game.currentGame.image = i[game.currentGame.imageCounter];
         game.currentGame.imageBookmark++;
+      } else if (i[game.currentGame.imageCounter] && game.currentGame.isFromFb) {
+        Form.loadImage(i[game.currentGame.imageCounter], function(err, imageString) {
+          game.currentGame.image = imageString;
+          game.currentGame.imageBookmark++;
+        });
       } else {
         game.endOfStory();
       }
