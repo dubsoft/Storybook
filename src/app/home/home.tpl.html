@@ -1,9 +1,6 @@
-<div class="jumbotron">
-  <h1>Welcome to <strong>Story Book</strong></h1>
-</div>
-
 <div class="row">
   <div class="col-md-12 text-center">
+    <button type="button" class="btn btn-primary" ng-click="home.createStory()">Create a New Story</button>
     <h2>Available Stories</h2>
     <ul class="no-points">
       <li class="spacing" ng-repeat="prompt in home.prompts">

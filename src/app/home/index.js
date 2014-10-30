@@ -23,7 +23,10 @@ angular.module('sf.home', [
 
     home.prompts = Game.getPrompts();
     home.fbPrompts = Form.getPrompts();
-    console.log(home.fbPrompts);
+
+    home.createStory = function() {
+      $state.go('sf.form');
+    };
 
 
     home.setUser = function(user) {
