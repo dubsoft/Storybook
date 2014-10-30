@@ -41,6 +41,15 @@ angular.module('sf.services.form', [
       }
     });
   }
+
+  form.loadImage = function(imgObj, cb) {
+    var md5 = imgObj.md5sum;
+    var imageRef = storiesBytesRef.child(md5);
+    var image = $firebase(imageRef).$asObject();
+    image.$loaded().then(function(i) {
+      cb(null, "data:" + i.filetype + ";base64, " + i.base64);
+    });
+  };
 })
 
 module.exports = 'sf.services.form';
