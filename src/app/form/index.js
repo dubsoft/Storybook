@@ -26,14 +26,17 @@ angular.module('sf.form', [
 
     form.submitForm = function(f) {
       var images = f.images;
+      var imagebytes = {};
       _.each(images, function(image) {
         image.md5sum = md5.createHash(image.base64model.base64);
+        imagebytes[image.md5sum] = image.base64model;
+        delete image.base64model;
       });
       Form.createNewStory({
         name: f.name,
         id: uuid4.generate(),
         images: images
-      }, function(err){
+      }, imagebytes, function(err){
         if (err) {
           alert(err);
         }

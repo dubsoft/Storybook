@@ -9,10 +9,14 @@ angular.module('sf.services.form', [
   var form = this;
 
   var storiesRef = new Firebase(baseFbUrl + "/stories");
+  var storiesBytesRef = new Firebase(baseFbUrl + "/stories_image_bytes");
 
-  form.createNewStory = function(story, cb) {
+  form.createNewStory = function(story, imagebytes, cb) {
     var stories = $firebase(storiesRef).$asArray();
     stories.$add(story).then(function() {
+      _.each(imagebytes, function(ib, key) {
+        storiesBytesRef.child(key).set(ib);
+      });
       cb();
     });
   }
@@ -24,12 +28,17 @@ angular.module('sf.services.form', [
   form.getStory = function(activityId, cb) {
     var stories = $firebase(storiesRef).$asArray();
     stories.$loaded().then(function(stories) {
+      var storyToReturn = null;
       _.each(stories, function(story) {
         if (story.id === activityId) {
-          cb(null, story);
+          storyToReturn = story;
         }
       });
-      cb(new Error("Couldn't find story with id " + activityId));
+      if (storyToReturn) {
+        cb(null, storyToReturn, true);
+      } else {
+        cb(new Error("Couldn't find story with id " + activityId));
+      }
     });
   }
 })

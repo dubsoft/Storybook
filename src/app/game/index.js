@@ -23,7 +23,7 @@ angular.module('sf.game', [
         }
       });
   })
-  .controller('GameCtrl', function($scope, $state, ngDialog, Game, User, ProfanityFilter, Punctuation) {
+  .controller('GameCtrl', function($scope, $state, ngDialog, Form, Game, User, ProfanityFilter, Punctuation) {
     var game = this;
 
     var currentUser = User.currentUser;
@@ -58,13 +58,19 @@ angular.module('sf.game', [
     }
 
     game.loadImages = function() {
-      Game.getImageSet(currentUser.activityPrompt, function(err, imageSet){
-        console.log(imageSet);
-        console.log(err);
-        game.currentGame.setName = imageSet.name;
-        game.currentGame.images = imageSet.images;
-        game.currentGame.image = imageSet.images[0];
-        game.currentGame.imageTotal = imageSet.images.length;
+      Game.getImageSet(currentUser.activityPrompt, function(err, imageSet, fromFb){
+        if (!fromFb) {
+          game.currentGame.setName = imageSet.name;
+          game.currentGame.images = imageSet.images;
+          game.currentGame.image = imageSet.images[0];
+          game.currentGame.imageTotal = imageSet.images.length;
+        } else {
+          var imageSetP = imageSet;
+          game.currentGame.setName = imageSetP.name;
+          game.currentGame.images = imageSetP.images;
+          game.currentGame.image = imageSetP.images[0];
+          game.currentGame.imageTotal = imageSetP.images.length;
+        }
       });
     }
 
