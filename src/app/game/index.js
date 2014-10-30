@@ -41,6 +41,8 @@ angular.module('sf.game', [
     var previousSentence = "";
     var gameId = User.currentUser.sid;
 
+    var defaultPrompt = "Write a story by writing a sentence for each picture.";
+
     game.currentGame.newSentence = "";
     game.currentGame.isFromFb = false;
     game.currentGame.finishMessageToShow = "";
@@ -62,18 +64,24 @@ angular.module('sf.game', [
       Game.getImageSet(currentUser.activityPrompt, function(err, imageSet, fromFb){
         if (!fromFb) {
           game.currentGame.setName = imageSet.name;
+          game.currentGame.setPrompt = imageSet.prompt || defaultPrompt;
           game.currentGame.images = imageSet.images;
           game.currentGame.image = imageSet.images[0];
-          game.currentGame.imageTotal = imageSet.images.length;
+          if (imageSet.images) {
+            game.currentGame.imageTotal = imageSet.images.length;
+          }
         } else {
           var imageSetP = imageSet;
           game.currentGame.isFromFb = true;
           game.currentGame.setName = imageSetP.name;
+          game.currentGame.setPrompt = imageSetP.prompt || defaultPrompt;
           game.currentGame.images = imageSetP.images;
-          game.currentGame.imageTotal = imageSetP.images.length;
-          Form.loadImage(imageSetP.images[0], function(err, imageString) {
-            game.currentGame.image = imageString;
-          });
+          if (imageSetP.images) {
+            game.currentGame.imageTotal = imageSetP.images.length;
+            Form.loadImage(imageSetP.images[0], function(err, imageString) {
+              game.currentGame.image = imageString;
+            });
+          }
         }
       });
     }
@@ -97,6 +105,10 @@ angular.module('sf.game', [
 
     game.advanceImage = function() {
       var i = game.currentGame.images;
+      if (!i) {
+        game.endOfStory();
+        return;
+      }
       game.currentGame.imageCounter++;
       if (i[game.currentGame.imageCounter] && !game.currentGame.isFromFb) {
         game.currentGame.image = i[game.currentGame.imageCounter];

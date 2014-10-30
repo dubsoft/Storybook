@@ -2,6 +2,7 @@
   <div class="row">
     <h3>Story Name and Images</h3>
       <input type="text" class="form-control input-lg" ng-model="form.currentForm.name" placeholder="Story Name" />
+      <input type="text" class="form-control input-lg" ng-model="form.currentForm.prompt" placeholder="Story Prompt" />
       <div ng-repeat="image in form.currentForm.images">
         <input type="file" accept="image/*" capture="camera" id="file-upload" ng-model="image.base64model" base-sixty-four-input>
       </div>
