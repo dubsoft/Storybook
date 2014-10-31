@@ -241,7 +241,7 @@ angular.module("sf.services.game", [
     };
 
     gameModel.getPrompts = function() {
-      return gameModel.sets;
+      return {};
     };
 
     gameModel.logWords = function(gameId, currentGame, sentence) {
