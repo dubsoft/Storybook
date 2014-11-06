@@ -14,6 +14,15 @@ angular.module('sf.form', [
             controller: 'FormCtrl as form'
           }
         }
+      })
+      .state('sf.form.link', {
+        url: '/link',
+        views: {
+          'content@': {
+            template: fs.readFileSync(__dirname + '/link.tpl.html'),
+            controller: 'FormCtrl as form'
+          }
+        }
       });
   })
 
