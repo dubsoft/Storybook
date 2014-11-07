@@ -29,6 +29,8 @@
     "angular-utils-pagination": "~0.3.1",
     "ngDialog": "~0.3.2",
     "angular-base64-upload": "~0.0.2",
-    "angular-md5": "~0.1.7"
+    "angular-md5": "~0.1.7",
+    "ng-clip": "~0.2.4",
+    "zeroclipboard": "~2.1.6"
   }
 }
