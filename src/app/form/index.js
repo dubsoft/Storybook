@@ -26,7 +26,7 @@ angular.module('sf.form', [
       });
   })
 
-  .controller('FormCtrl', function(Form, md5, _, uuid4) {
+  .controller('FormCtrl', function($state, Form, md5, _, uuid4) {
     var form = this;
 
     form.currentForm = {};
@@ -54,6 +54,9 @@ angular.module('sf.form', [
           alert(err);
         } else {
           form.currentForm.link = "https://storybook.firebaseapp.com/#/?activityPrompt=" + id;
+          $state.data = {};
+          $state.data.link = form.currentForm.link;
+          $state.transitionTo('sf.form.link');
         }
       });
     }
@@ -61,6 +64,16 @@ angular.module('sf.form', [
     form.addNewImage = function() {
       form.currentForm.images.push({});
     };
+
+    form.getLink = function() {
+      if ($state.data && $state.data.link) {
+        return $state.data.link;
+      }
+    };
+
+    form.fallback = function(copy) {
+      window.prompt('Press cmd+c(Mac) or ctrl-c(Windows) to copy the text below.', copy);
+    }
   })
 
 ;

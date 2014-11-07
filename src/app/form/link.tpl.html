@@ -1,22 +1,12 @@
-<form class="css-form" novalidate>
-  <div class="row">
-    <h3>Story Name and Images</h3>
-      <input type="text" class="form-control input-lg" ng-model="form.currentForm.name" placeholder="Story Name" />
-      <br/>
-      <input type="text" class="form-control input-lg" ng-model="form.currentForm.prompt" placeholder="Story Prompt" />
-      <div ng-repeat="image in form.currentForm.images">
-        <br/>
-        <input type="file" accept="image/*" capture="camera" id="file-upload" ng-model="image.base64model" base-sixty-four-input>
-      </div>
-      <br/>
-      <button class="btn btn-primary" role="button" ng-click='form.addNewImage()'>Add Another Image</button>
-  </div>
-  <div class="row">
-    <br/>
-    <button class="btn btn-primary btn-lg" role="button" ng-click='form.submitForm(form.currentForm)' ng-disabled="form.$invalid">Submit Story</button>
-  </div>
-  <div ng-show='form.currentForm.link' class="row well">
-    <br/>
-    <p>{{form.currentForm.link}}</p>
-  </div>
- </form>
+<h2>My Activity</h2>
+<p>Share this link with your students to let them write stories using
+your activity.</p>
+<p class="italic">This is a temporary system while we integrate Story Book
+into Quill.org</p>
+<div class="well">
+  <p>{{form.getLink()}}</p>
+</div>
+<button class="btn btn-primary btn-submit" clip-copy="form.getLink()"
+  clip-click="form.getLink()"
+  clip-click-fallback="form.fallback(formLink.getLink())">Copy Link</button>
+
